@@ -1,0 +1,3 @@
+Zmiana bazy danych z mysql na h2
+Zmiana szablonów JavaServer Pages na Thymeleaf
+Ponowna konfiguracja Spring Security
