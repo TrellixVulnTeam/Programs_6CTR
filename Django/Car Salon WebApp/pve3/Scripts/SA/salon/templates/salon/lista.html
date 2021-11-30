@@ -1,0 +1,74 @@
+{% load static %}
+
+{% include 'salon/base.html' %}
+
+  <body>
+
+    {% include 'salon/menu.html' %}
+    
+    <div id="page">
+      <div id="main_bg">
+    {% include 'salon/leftbar.html' %}
+    <div id="content">
+
+
+
+        <!--TREŚĆ-->
+        <div class="window" style = "margin-left: 5vh; margin-top: 60px; width: 60vh;">
+           
+            <table>
+              <tr>
+                <th style = "color: black">
+                    Nick Kupującego
+                </th>
+                <th style = "color: black">
+                    Marka
+                </th>
+                <th style = "color: black">
+                    Model
+                </th>
+                <th style = "color: black">
+                    Cena
+                </th>
+                <th style = "color: black">
+                    Data zlecenia
+                </th>
+               
+            </tr>
+              <tr>
+              {% for tabela in spis %}
+              <tr>
+                <td>
+
+                  {{tabela.kupujacy}}
+                </td>
+                <td>
+                  {{tabela.marka}}
+                </td>
+                <td>
+                  {{tabela.model}}
+                </td>
+                <td>
+                  {{tabela.Cena}} zł
+                </td>
+                <td>
+                  {{tabela.data}}
+                </td>
+              </tr>
+              {% endfor %}
+            </table>    
+           
+        </div>
+
+
+
+
+
+    </div>
+
+</div>
+</div>
+</div>   
+
+</body>
+</html>

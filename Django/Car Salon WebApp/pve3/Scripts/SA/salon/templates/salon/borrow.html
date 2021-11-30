@@ -1,0 +1,73 @@
+{% load static %}
+
+{% include 'salon/base.html' %}
+
+  <body>
+
+    {% include 'salon/menu.html' %}
+    
+    <div id="page">
+      <div id="main_bg">
+    {% include 'salon/leftbar.html' %}
+    <div id="content">
+
+
+
+        <!--TREŚĆ-->
+        <div class="window" >
+           
+            
+
+                <table class="mess">
+                    <tr>
+
+
+                        <th>
+                                Umówiony
+
+                        </th>
+                        <th>
+
+                                Auto
+                        </th>
+
+                        <th>
+
+                                Data
+                        </th>
+                    </tr>
+
+                    {% for a in jazda %}
+
+                    <tr>
+                            <th>
+
+                                {{a.uczestnik}}
+                            </th>
+                            <th>
+                                {{a.auto}}
+
+                            </th>
+                            <th>
+                                {{a.data}}
+                            </th>
+                    </tr>
+                    {% endfor %}
+                </table>
+
+           
+           
+        </div>
+
+
+
+
+
+    </div>
+
+</div>
+</div>
+</div>   
+
+</body>
+</html>

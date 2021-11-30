@@ -1,0 +1,50 @@
+body { margin: 0; background: #222; color: #fafafa; font-family: 'Montserrat', sans-serif; width: 100%;}
+    .wrapper {display: flex; justify-content: center; align-items: center;}
+h1 {margin: 0; font-weight: normal; font-family: 'Bodoni 72', sans-serif; font-size: 70px;}
+a {color: white; text-decoration: none;}
+a:hover {color: green; };
+    .fotter {float: bottom;}
+    .copy {margin-left: 40vmax;}
+    .obrazek {width: 100%;}
+    .bar {width: 100%; background: #222; height: 10%; }
+    .button {
+        -webkit-transition-duration: 0.4s;
+        border: rgb(4, 51, 63);
+        border-style: ridge; 
+        transition-duration: 0.4s;
+        float:right;
+      }
+      .button:hover {
+        background-color: #4CAF50;
+        color: white;
+      }
+.tabelkaLogowania
+{
+    margin-left: 80vh;
+    text-align: center;
+    margin-top: 10vh;
+}
+.tabelkaRejestracja
+{
+    margin-left: 100vh;
+   
+    margin-top: 10vh;
+}
+.navibar
+{
+  float: right;
+}
+.thsize
+{
+  max-width: 80vh;
+  border-style: groove;
+}
+.bookstable
+{
+  margin-left: 45vh;
+  border-style: groove;
+}
+.images
+{
+  max-width: 30vh;
+}

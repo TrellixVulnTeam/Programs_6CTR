@@ -1,0 +1,27 @@
+html
+head
+	link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700")
+	link(rel="stylesheet" href="css/main.css")
+body
+	div.bar
+		
+		p 
+			<a href="contact">Kontakt #{session.loggedUser}</a>
+
+			if user.isLogged
+				a(class='link', href='catalog') Katalog 
+			if !session.logged
+				a(class='button', href='logowanie') Logowanie  
+			else
+				a(class='button', href='logout') Wyloguj 
+		p 
+			a(class='button', href='rejestracja') Rejestracja  
+
+	div.obrazek
+		img(src=("picture/obrazek.png"))
+	.wrapper
+		div
+			h1 Witam na mojej stronie 
+	.fotter
+		div
+			h5.copy Zdaniuk Rafał Copyright &copy; 2019

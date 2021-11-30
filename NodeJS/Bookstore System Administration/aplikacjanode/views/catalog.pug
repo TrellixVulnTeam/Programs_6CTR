@@ -1,0 +1,21 @@
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700")
+        link(rel="stylesheet" href="css/main.css")
+    body
+        p #{user.login}
+        p #{user.isAdmin()}
+
+        table
+            tr
+                td Tytul
+                td Autor
+                td Gatunek
+            each row in books
+                tr
+                    td #{row.tytul}
+                    td #{row.autor}
+                    td #{row.gatunek}
+                
+            

@@ -1,0 +1,64 @@
+{% load static %}
+
+{% include 'salon/base.html' %}
+
+  <body>
+
+    {% include 'salon/menu.html' %}
+    
+    <div id="page">
+      <div id="main_bg">
+    {% include 'salon/leftbar.html' %}
+    <div id="content">
+
+
+
+        <!--TREŚĆ-->
+        <div class="inbox" style = "margin-top: 60px; width: 40vh;">
+        
+            
+            <table class="mess">
+                <tr>
+                    <th style="color: black;">
+                        Wiadomosc od:
+                    </th>
+                    <td style="color: black;">
+                        Treść:
+                    </td>
+                    <td>
+                        Data:
+                    </td>
+                </tr>
+                {% for s in spis %}
+                    <tr>
+                            <th>
+                                {{s.nick}} 
+
+                            </th>
+                            <td>
+                                {{s.wiadomosc}}
+                            </td>
+                            <td>
+                                {{s.data}}
+                            </td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            
+            
+           
+        </div>
+
+
+
+
+
+    </div>
+
+</div>
+</div>
+</div>   
+
+</body>
+</html>

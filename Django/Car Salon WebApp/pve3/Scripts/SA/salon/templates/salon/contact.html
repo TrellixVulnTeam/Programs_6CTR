@@ -1,0 +1,66 @@
+
+{% load static %}
+
+{% include 'salon/base.html' %}
+
+  <body>
+
+    {% include 'salon/menu.html' %}
+    
+    <div id="page">
+      <div id="main_bg">
+    {% include 'salon/leftbar.html' %}
+    <div id="content">
+
+
+
+        <!--TREŚĆ-->
+        <div class="window">
+          {% if user.is_authenticated %}
+          {% if messages %}
+              <ul>
+                  {% for komunikat in messages %}
+                  {{ komunikat }} {{ user.username }}
+                  {% endfor %}
+              </ul>
+              {% endif %}
+            Umów się na jazdę próbną samochodami dostepnymi z naszego katalogu
+
+         
+            <form method="POST">
+            <select name="car">
+              {% for auta in samochody %}
+              <option value="{{auta.marka}}{{auta.model}}">{{auta.marka}} {{auta.model}}</option>
+              {% endfor %}
+            </select>
+              {% csrf_token %}
+              <input type="date" name="data" value="">
+              <input type="hidden" name="username" value="{{user.username}}">
+            <button type="submit">Sprawdź termin</button>
+
+            </form>
+            {% else %}
+        <div class="window">
+            Treść widoczna tylko dla zarejestrowanych użytkowników <br><br>
+            jeśli nie masz jeszcze konta:
+            <a href="{% url 'salon:signup'%}">Zarejestruj się</a> <br>
+            a jeśli masz: <a href="{% url 'salon:loguj'%}">Zaloguj się</a>
+        </div>
+        
+        {% endif %}
+            
+                    
+          </div>
+
+
+
+
+
+    </div>
+
+</div>
+</div>
+</div>   
+
+</body>
+</html>

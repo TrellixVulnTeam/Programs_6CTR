@@ -1,0 +1,108 @@
+
+{% load static %}
+
+{% include 'salon/base.html' %}
+
+  <body>
+
+    {% include 'salon/menu.html' %}
+    
+    <div id="page">
+      <div id="main_bg">
+    {% include 'salon/leftbar.html' %}
+    <div id="content">
+
+
+
+        <!--TREŚĆ-->
+        {% for auta in s %}
+        <div class="window" style = "margin-top: 15px; margin-left: 20px; margin-right: 20px">
+        <table>
+            
+            <tr>
+                <th>
+                    
+                    <h1 style="text-transform: capitalize;">{{auta.marka}} {{auta.model}}</h1> 
+                   
+                </th>
+            </tr>
+            <tr>
+                    <th>
+                        
+                        DATA PRODUKCJI: {{auta.data_produkcji}}
+
+                    </th>
+                   
+            </tr>
+            <tr>
+                <th>
+                    OPIS: {{auta.opis}}
+                </th>
+                <th>
+                    <img src="../static/salon/css/images/{{auta.link}}" alt="" width="150px" height="100px">
+                </th>
+            </tr>
+            <tr>
+
+                <th>
+                   <h1>CENA: {{auta.cena}} zł</h1> 
+                </th>
+            </tr>
+            <tr>
+                <th>
+                
+                       
+                 
+                    
+                    {% if user.is_authenticated %}
+                    <form method="POST">
+                        {% csrf_token %}
+                    <p><input type="hidden" value="{{auta.id}}" name="id"></p>
+                    <p><button class="bt" type = "submit">Zarezerwuj</button></p>
+                    <p><input type="hidden" value="{{identyfikator}}" name="identyfikator"></p>
+                    <p><input type="hidden" value="{{b.marka}}" name="marka"></p>
+                    <p><input type="hidden" value="{{b.model}}" name="marka"></p>
+                    <p><input type="hidden" value="{{b.cena}}" name="marka"></p>
+                    <p><input type="hidden" value="{{user.username}}" name="uzytkownik"></p>
+                        
+                    </form>
+                    {% else %}
+                    By dokonać rezerwacji musisz się zalogować <br><br>
+                    jeśli nie masz jeszcze konta:
+                    <a href="{% url 'salon:signup'%}">Zarejestruj się</a> <br>
+                    a jeśli masz: <a href="{% url 'salon:loguj'%}">Zaloguj się</a>
+                    {%endif%}
+                    
+                </th>
+                
+                
+          
+            </tr> 
+            <tr>
+                <th>
+                   
+
+                </th>
+            </tr>  
+            
+           
+        </table>
+
+        
+
+        
+        </div>
+        {% endfor %}
+
+
+
+
+
+    </div>
+
+</div>
+</div>
+</div>   
+
+</body>
+</html>

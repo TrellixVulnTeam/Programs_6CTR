@@ -1,0 +1,42 @@
+
+  
+{% load static %}
+
+{% include 'salon/base.html' %}
+
+  <body>
+
+    {% include 'salon/menu.html' %}
+    
+    <div id="page">
+      <div id="main_bg">
+    {% include 'salon/leftbar.html' %}
+    <div id="content">
+
+
+
+        <!--TREŚĆ-->
+        <div class="window">
+
+          <h2>Rejestracja użytkownika</h2>
+          <form method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+          <button type="submit">Rejestruj</button>
+          </form>
+
+        </div>
+        
+
+        
+
+
+
+    </div>
+
+</div>
+</div>
+</div>   
+
+</body>
+</html>

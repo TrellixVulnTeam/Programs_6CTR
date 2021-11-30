@@ -1,0 +1,5 @@
+login: admin
+hasło: hasloadmin
+
+login: user
+hasło: haslo

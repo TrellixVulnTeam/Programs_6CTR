@@ -1,0 +1,454 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Opineo, Feedback Collection and Polling Widget - Documentation</title>
+<link rel="alternate" type="application/rss+xml" title="egrappler.com" href="feed/index.html">
+<link href="http://fonts.googleapis.com/css?family=Raleway:700,300" rel="stylesheet"
+        type="text/css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/prettify.css">
+</head>
+
+
+
+
+
+<body data-post="http://www.egrappler.com/free-product-documentation-template/" style="margin-top:45px">
+<nav>
+  <div class="container">
+    <h1>PICTUREMAX</h1>
+  
+    <a id="menu-toggle" href="#" class=" ">&#9776;</a> </div>
+</nav>
+<header>
+  <div class="container">
+    <h2 class="docs-header"> Dokumentacja użytkownika</h2>
+  </div>
+</header>
+<section>
+  <div class="container">
+    <ul class="docs-nav" id="menu-left">
+      <li><strong>Wstęp</strong></li>
+      <li><a href="#welcome" class=" ">Witaj</a></li>
+      <li><a href="#features" class=" ">Funkcje</a></li>
+      <li><a href="#license" class=" ">Przyszłość</a></li>
+      <li class="separator"></li>
+      <li><strong>Szczegółowy opis funkcjonalności</strong></li>
+      <li><a href="#view_type" class=" ">System autoryzacji</a></li>
+      <li><a href="#animation_style" class=" ">Zarządzanie zdjęciami</a></li>
+    </ul>
+    <div class="docs-content">
+      <h2> Wstęp</h2>
+      <h3 id="welcome"> Witaj</h3>
+      
+      <p> Aplikacja internetowa PICTUREMAX jest to strona dzięki której możemy:  </p>
+      <ul>
+        <li>Dzielić się ze znajomymi swoimi fotografiami</li>
+        <li>Oglądać zdjęcia innych użytkowników</li>
+        <li>Komentować obrazy innych</li>
+        <li>Oceniać po przez łapki w góre</li>
+      </ul>
+      <p> Serwis PICTUREMAX powstał z myślą o ludziach którzy lubią robić profesjonalne zdjęcia i poddawać je opinii innych </p>
+      
+      <h3 id="features"> Funkcje</h3>
+      <ul>
+        <li>System rejestracji i logowania</li>
+        <li>System przeglądania zdjęć</li>
+        <li>System dodawania zdjęć</li>
+        <li>System usuwania zdjęć</li>
+        <li>System edycji dodanych zdjęć</li>
+        <li>System komentowania i dodawania opinii pod zdjęciami</li>
+        
+      </ul>
+      <h3 id="license"> Przyszłość</h3>
+      <p> W przyszłości serwis może zostać rozbudowany do poziomu dużego serwisu społecznościowego, posiadającego system dodawania znajomych lub czatowania.</p>
+      <hr>
+      <h2> Szczegółowy opis funkcjonalności</h2>
+      <p> Aplikacja internetowa została wykonana przy pomocy języka node.js oraz frameworku express.</p>
+      <p>Za składowanie danych odpowiedzialna jest baza danych utworzona w MongoDB</p>
+      <p>Do wyświetlania zawartości serwisu został użyty system szablonów stron internetowych HBS</p>
+      
+      <p> Opis funkcjonalności:</p>
+      <h3 id="view_type"> System autoryzacji</h3>
+      <ul>
+        <li>Rejestracja</li>
+      </ul>
+     <p> Po kliknięciu przycisku rozwijanego menu znadującego się na stronie głównej, w lewym górnym rogu ekranu, otworzy się panel w którym możemy wybrać jedną z opcji</p> 
+     
+     <img class="img1" src="images/home.png" alt="Home">
+     <p>Jeśli wybierzemy przycisk "Zarejestruj", aplikacja przeniesie nas do strony rejestracji, na której będziemy poproszeni o dane osobowe w postaci imienia, nazwiska, emailu oraz hasła</p>
+
+     <img class="img" src="images/rejestracja.png" alt="rejestracja">
+     <p>Po poprawnej rejestracji zostaniemy przekierowani spowrotem do strony głównej, jeśli jednak to nie nastąpi dostaniemy komunikat zwrotny o błędzie</p>
+     <p>Algorytm rejestracji korzysta z funkcji haszowania haseł w celu zwiększenia bezpieczeństwa</p>
+     <pre class="prettyprint">&lt;script&gt;
+      exports.register_get = function(req,res) 
+{
+    res.render('register');
+}
+
+exports.register_post = (req, res, next) => {
+   
+    bcrypt.hash(req.body.haslo, 10, function(err, PasswordHash){
+        if(err){
+            res.json({error: 'bląd funkcji haszującej'})
+        }
+       
+        let user = new User({
+            imie: req.body.imie,
+            nazwisko: req.body.nazwisko,
+            haslo: PasswordHash,
+            email: req.body.email,    
+            
+        })
+     
+        user.save().then(() => {
+            res.redirect("/")
+        }).catch(()=>{
+            
+            res.json({
+                message: "blad"
+            })
+        })
+
+     })
+}
+&lt;/script&gt;</pre>
+      <ul>
+        <li>Logowanie</li>
+      </ul>
+      <p>Jeśli użytkownik jest już zarejestrowany w serwisie, na stronie będzie dostępny dla niego przycisk "zaloguj", umożliwiający logowanie do serwisu</p>
+      <p>Po kliknięciu w przycisk zostaniemy przekierowani do strony logowania, gdzie poproszeni zostaniemy o podanie loginu (nazwiska) oraz hasła ustalonego podczas rejestracji</p>
+      <img class="img" src="images/logowanie.png" alt="logowanie">
+      <p>Jeśli zostaniemy poprawnie zalogowani, serwis przeniesie nas do strony galerii na której znajdują się wszystkie zdjęcia</p>
+
+      <p>Algorytm logowania wykorzystuje system tokenów który pozwala identyfikować zalogowanych użytkowników</p>
+      <pre class="prettyprint">&lt;script&gt;
+        exports.login_get = function (req,res)
+        {
+            res.render("login");
+        }
+        exports.login = (req, res, next) => {
+        
+            var nazwisko = req.body.nazwisko
+            var password = req.body.haslo
+           
+            User.findOne({nazwisko})
+            .then(user => {
+                if(user) {
+                    bcrypt.compare(password, user.haslo, function (err,result){
+                        if(err){
+                            res.json({
+                                error: err
+                            })
+                        }
+        
+                        if (result) {
+                            
+                            let token = jwt.sign({_id: user.id}, 'kodSzyfrujacy', {expiresIn: '1h'})
+                                         
+                            if(typeof localStorage === "undefined" || localStorage === null)
+                            {
+                                var LocalStorage = require('node-localstorage').LocalStorage;
+                                localStorage = new LocalStorage('./scratch');
+              
+                            }
+                            localStorage.setItem('token', token); 
+                            res.redirect("../pictures");
+        
+                        }else {
+                            res.json({message: 'Złe hasło'})
+                        }
+        
+                    })
+            }else {
+                res.json({
+                    message: 'No user found!'
+                })
+            }
+        
+            })
+        }
+&lt;/script&gt;</pre>
+      <ul>
+        <li>Wylogowywanie</li>
+      </ul>
+      <p>Gdy użytkownik został poprawnie zlogowany, może na dowolnej stronie dokonać wylogowania, następnie zostaje przeniesiony na stronę główną</p>
+      
+      <pre class="prettyprint">&lt;script&gt;
+        exports.logout = function(req,res)
+        {
+        
+            localStorage.removeItem('token');
+            res.redirect("/");
+        }
+&lt;/script&gt;</pre>
+      <h3 id="animation_style"> Zarządzanie zdjęciami</h3>
+      
+      <p>Do galerii zdjęć możemy przejść jako zalogowani, lub niezalogowani użytkownicy. By dokonywać jakich kolwiek zmian (dodawać, usuwać lub modyfikować zdjęcia) w galerii, będziemy potrzebowali wcześniejszej autentyfikacji </p>
+      
+      <ul>
+        <li>Przeglądanie zdjęć</li>
+      </ul>
+      <p>Jeśli zostaniemy zalogowani lub gdy klikniemy w przycisk "Przeglądaj zdjęcia" zostaniemy przekierowani do galerii zdjęć gdzie wyświetlone są wszystkie zdjęcia użytkowników</p>
+      <img class="img2" src="images/galeria.png" alt="Przeglądanie zdjęć">
+      <pre class="prettyprint">&lt;script&gt;
+        exports.index = function(req, res) {
+          console.log("wywołanie get index picture")
+          Picture.find().then(function(pictures){
+              res.render('index', {title: "Gallery", items: pictures});
+          });
+      };
+&lt;/script&gt; </pre>
+      <ul>
+        <li>Dodawanie zdjęć</li>
+      </ul>
+      <p>Po kliknięciu w przycisk "Dodaj zdjęcie" mamy możliwość uploadu zdjęcia do galerii (Opcja dostępna tylko dla zalogowanych użytkowników)</p>
+
+
+      <img class="img2" src="images/upload.png" alt="upload zdjęć">
+      <p>Algorytm dodawania zdjęcia pobiera nazwę pliku który chcemy załączyć lecz pozwala nam zmienić nazwę już w aplikacji. Po kliknięciu prześlij, zdjęcie zostaje wysłane na serwer i widoczne jest w galerii</p>
+      <img class="img1" src="images/dodane.png" alt="dodane zdjęcie">
+      <pre class="prettyprint">&lt;script&gt;
+        exports.picture_upload_post = function(req,res)
+        {
+            var formData = new formidable.IncomingForm();
+            formData.uploadDir='public/images'; 
+            formData.parse(req, function (error, fields, files){
+                
+                var oldpath = files.file.path;
+                var extension = files.file.name.substr(files.file.name.lastIndexOf("."));
+                
+                var newPath = "./public/images/" + fields.fileName + extension;
+        
+                console.log("FILES FILE NAME" + files.file.path)
+                fs.rename(oldpath, newPath, function (errorRename){
+        
+                     if(errorRename) throw errorRename;
+                    var rozm = files.file.size;
+                    
+                    if(rozm >= 10000)
+                    {
+                        var picture = new Picture({
+                            nazwa: fields.fileName + extension,
+                            rozmiar: 10000,
+                        });
+                    }else
+                    {
+                        var picture = new Picture({
+                            nazwa: fields.fileName + extension,    
+                            rozmiar: rozm,
+                        });
+                    }
+                    
+                    picture.save().then(()=>{
+                        
+                         res.redirect('../pictures')
+                    }).catch(err =>{
+                        console.log(err)
+                    })
+        
+                });
+            })
+        }
+&lt;/script&gt; </pre>
+      <ul>
+        <li>Usuwanie zdjęć</li>
+      </ul>
+      <p>Po kliknięciu przycisku "delete" dostępnego pod zdjęciem, zostaje ono usunięte (opcja dostępna tylko dla zalogowanych użytkowników) </p>
+      <pre class="prettyprint">&lt;script&gt;
+        exports.picture_delete_post = function(req,res)
+        {
+            const id = req.body.id
+            console.log(id + " To zostanie usunięte" )
+            Picture.findByIdAndDelete(id, 
+                function(err,docs){
+                    if(err){
+                        console.log(err)
+                    }
+                    else{
+                        console.log("usuwam")
+                        res.redirect('/pictures')
+                    }
+                });
+        }
+ &lt;/script&gt;</pre>
+      <ul>
+        <li>Edytowanie zdjęć</li>
+      </ul>
+      <p>Po kliknięciu przycisku "update", znajdującego się pod zdjęciem, pojawi się podstrona w której będziemy mogli zmienić zdjęcie, lub jego nazwę (opcja dostępna dla zalogowanych użytkowników)</p>
+      <p>Należy dokonać dowolnych zmien (załadować inne zdjęcie lub zmienić jego nazwę) a następnie kliknąć przycisk "Submit"</p>
+      <img class="img" src="images/update.png" alt="edycja zdjęć">
+      
+      <pre class="prettyprint">&lt;script&gt;
+    $(document).ready(function (){
+    $('#opineo').opineo('results.php', {curvalue:0, view: 'mini', animation_speed:'super'});
+    })	
+&lt;/script&gt;</pre>
+      <ul>
+        <li>Podgląd zdjęcia w pełnych rozmiarach</li>
+      </ul>
+      <p>Po kliknięciu w przycisk "Pokaz" mamy możliwość obejrzenia zdjęcia w oryginalnych rozmiarach (opcja dostępna dla wszystkich odwiedzających).</p>
+      <p>Mamy również możliwość dodania komentarzy pod zdjęciem oraz dodania "lajków", natomiast do tego potrzebujemy już autoryzacji</p>
+      <p>By dodać własny komantarz, musimy wpisać jego treść w dostępne okno a następnie kliknąć przycisk komentuj</p>
+      <p>Po kliknięciu przycisku "like" dodamy jedno polubienie, natomist po wtórnym kliknięciu nasza decyzja zostanie cofnięta</p>
+      <img class="img1" src="images/show.png" alt="Podgląd zdjęcia">
+
+      <pre class="prettyprint"> &lt;script&gt;
+
+      
+        //PODGLĄD
+
+        exports.picture_info = function (req,res)
+{
+    var id = req.params.id
+    Picture.findOne({_id: id}).then(function (pictures) {
+        Komentarz.find({id_zdjecia: id}).then(function(comments){
+            res.render('show',{item: pictures, commentsList: comments});
+        });
+        // console.log(picture)
+       
+    });
+    console.log(req.params)
+    console.log("Sprawdzam co to !!!!!!!!!!!!!!!!!!")
+}
+exports.picture_create_get = function (req, res){
+    res.render('create');
+};
+
+
+
+
+        // KOMENTARZE
+
+        exports.comment_create_get=function(req,res){
+          res.render('createComment')
+      }
+      
+      exports.comment_create_post = function(req, res, next) {
+          
+      
+          var comment = new Komentarz({
+              tresc: req.body.tresc,
+          });
+      
+          if(req.body.tresc !=""){
+      
+      
+              comment.save().then(()=>{
+                  console.log("Dodaje zdjęcie")
+                  res.send('add new comment');
+              }).catch(err =>{
+                  console.log(err)
+              })
+      
+          }else 
+          { res.render('createComment', function (err, html){
+              res.send(html + "<p style='color: red;'>Komentarz nie może być pusty</p>")
+          } )}
+      
+      
+          
+      
+      
+      
+      };
+
+        //POLUBIENIA
+
+        exports.like = function (req,res)
+        {
+        
+            const id = req.body.id
+            
+            Polubienia.findOne( {id_usera: req.user._id, id_zdjecia: id}, function (err, polubione ) {
+        
+                if(polubione)
+                {
+                    console.log("Like został już oddany")
+        
+                    Polubienia.deleteOne({id_zdjecia: id, id_usera:req.user._id}, 
+                        function(err,docs){
+                            if(err){
+                                console.log(err)
+                            }
+                            else{
+                                console.log("usuwam");
+                             
+                                
+                            }
+                        });
+        
+
+                        Picture.updateOne({_id:id},{
+                
+                            $inc: { likes: -1 } 
+                        
+                        }).then(()=>{
+                            res.redirect('back');
+                            console.log("WSZYSTKO SIE UDALO");
+                        })
+        
+                }else{
+        
+                    Picture.updateOne({_id:id},{
+                
+                        $inc: { likes: 1 } 
+                    
+                    }).then(()=>{
+                        res.redirect('back');
+                        console.log("WSZYSTKO SIE UDALO");
+                    })
+        
+                    
+                    var like = new Polubienia({
+                        id_zdjecia: id, id_usera: req.user._id
+                    });
+                    
+                    like.save().then(()=>{
+                        console.log("like jest dodany")
+                        res.send('add new like');
+                    }).catch(err => {
+                        console.log(err)
+                    })
+        
+                }
+            
+            })
+        
+
+ 
+&lt;/script&gt;</pre>
+     
+      
+    </div>
+  </div>
+</section>
+<section class="vibrant centered">
+  <div class="container">
+    <h4> Dokumentacja powstała do celów zapoznania użytkowników z funkcjonalnościami na stronie PICTUREMAX.com</a></h4>
+  </div>
+</section>
+<footer>
+  <div class="container">
+    <p> &copy; 2020 PICTUREMAX </p>
+  </div>
+</footer>
+<script src="js/jquery.min.js"></script> 
+ 
+<script type="text/javascript" src="js/prettify/prettify.js"></script> 
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=css&skin=sunburst"></script>
+<script src="js/layout.js"></script>
+ <script src="js/jquery.localscroll-1.2.7.js" type="text/javascript"></script>
+ <script src="js/jquery.scrollTo-1.4.3.1.js" type="text/javascript"></script>
+   <script type="text/javascript" src="../../wp-content/themes/piha/js/top-bar-l1.js" ></script>
+  <script type="text/javascript" src="../../wp-content/themes/piha/js/bsa-ads-l1.js" ></script>
+  <!--Dynamically creates analytics markup-->
+  <?php include("http://www.egrappler.com/analytics.php");?>
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+  <title>Document</title>
+
+    <script>
+        
+        var turn = "o";
+    
+        
+
+        var tablica = [0,1,2,3,4,5,6,7,8];
+        var winx
+        var wino
+
+                
+        function gen()
+        {
+            const main = document.getElementById("main")
+            console.log("Tworze tablice")
+            
+
+            //Tworzene elementów td
+
+            var b1 = document.createElement("td")
+            b1.setAttribute("id","0")
+            b1.className = "cell";
+            b1.onclick = kliknij
+            b1.dataset.value = 0;
+            
+            
+            
+            var b2 = document.createElement("td")
+            b2.setAttribute("id","1")
+            b2.className = "cells";
+            b2.dataset.value = 1;
+            b2.onclick = kliknij
+
+
+
+            var b3 = document.createElement("td")
+            b3.setAttribute("id","2")
+            b3.className = "cells";
+            b3.onclick = kliknij
+            b3.dataset.value = 2;
+
+
+
+            var b4 = document.createElement("td")
+            b4.setAttribute("id","3")
+            b4.className = "cells";
+            b4.onclick = kliknij
+            b4.dataset.value = 3;
+
+
+            var b5 = document.createElement("td")
+            b5.setAttribute("id","4")
+            b5.className = "cells";
+            b5.onclick = kliknij
+            b5.dataset.value = 4;
+
+
+            var b6 = document.createElement("td")
+            b6.setAttribute("id","5")
+            b6.className = "cells";
+            b6.onclick = kliknij
+            b6.dataset.value = 5;
+
+
+            var b7 = document.createElement("td")
+            b7.setAttribute("id","6")
+            b7.className = "cells";
+            b7.onclick =kliknij
+            b7.dataset.value = 6;
+
+
+            var b8 = document.createElement("td")
+            b8.setAttribute("id","7")
+            b8.className = "cells";
+            b8.onclick = kliknij
+            b8.dataset.value = 7;
+
+            var b9 = document.createElement("td")
+            b9.setAttribute("id","8")
+            b9.className = "cells";
+            b9.onclick = kliknij
+            b9.dataset.value = 8;
+
+
+
+            //tablica obiektów td
+
+            var box = {b1, b2, b3, b4, b5, b6, b7, b8, b9}
+            
+            // Tworzenie tabeli i TR 
+
+            var table1 = document.createElement("table")
+            table1.setAttribute("id", "myTable");
+            main.appendChild(table1);
+
+            var row1 = document.createElement("tr");
+            row1.setAttribute("id","myTr1");
+            table1.appendChild(row1);
+
+            var row2 = document.createElement("tr");
+            row2.setAttribute("id","myTr2");
+            table1.appendChild(row2);
+
+            var row3 = document.createElement("tr");
+            row3.setAttribute("id","myTr3");
+            table1.appendChild(row3);
+            
+
+            // Układanie kolejności Tabeli tr td
+            row1.appendChild(b1)
+            row1.appendChild(b2)
+            row1.appendChild(b3)
+            row2.appendChild(b4)
+            row2.appendChild(b5)
+            row2.appendChild(b6)
+            row3.appendChild(b7)
+            row3.appendChild(b8)
+            row3.appendChild(b9)
+            
+            // for(let i=0; i<box.lenght; i++)
+            // {
+            //     box[i].className = "cell";
+            //     box[i].dataset.value = i;
+            
+            //     row1.appendChild(box[i]);
+            
+            // }
+            
+
+        }
+            function kliknij()
+            {
+                if(turn == "o")
+                {
+                    if(tablica[this.dataset.value] != "x" && tablica[this.dataset.value] != "o" )
+                    {
+                        tablica[this.dataset.value] = "o"
+                        document.getElementById(this.dataset.value).innerText = "O";
+                        turn = "x"
+                        check();
+                    }
+                    
+                    
+                    
+                }else if (turn == "x")
+                {
+                    if(tablica[this.dataset.value] != "x" && tablica[this.dataset.value] != "o" )
+                    {
+                        document.getElementById(this.dataset.value).innerText = "X";
+                        tablica[this.dataset.value] = "x"
+                        turn = "o"
+                        check();
+                    }
+                    
+
+                    
+                      
+
+                }
+                
+               
+
+            }
+
+
+            function startGame()
+            {
+
+                    for(var h=0; h<tablica.length; h++)
+                    {
+                        tablica[h]=""
+                        document.getElementById(h).innerText = "";
+                    }
+                    document.getElementById("end").style.display = "none";
+
+
+            }
+
+            function check()
+            {
+                
+                if(tablica[0] == "x" && tablica[1] == "x" && tablica[2] == "x" )
+                {
+                    console.log("WYGRYWA X")
+                    document.getElementById("end").innerText="WYGRYWA X";
+                    document.getElementById("end").style.display = "block";
+                }else if (tablica[3] == "x" && tablica[4] == "x" && tablica[5] == "x" )
+                {
+                    document.getElementById("end").innerText="WYGRYWA X";
+                    document.getElementById("end").style.display = "block";
+                    console.log("WYGRYWA X")
+                }else if(tablica[6] == "x" && tablica[7] == "x" && tablica[8] == "x" )
+                {
+                    document.getElementById("end").innerText="WYGRYWA X";
+                    document.getElementById("end").style.display = "block";
+                    console.log("WYGRYWA X")
+                }else if(tablica[0] == "x" && tablica[3] == "x" && tablica[6] == "x")
+                {
+                    document.getElementById("end").innerText="WYGRYWA X";
+                    document.getElementById("end").style.display = "block";
+                    console.log("WYGRYWA X")
+                }else if(tablica[1] == "x" && tablica[4] == "x" && tablica[7] == "x")
+                {
+                    document.getElementById("end").innerText="WYGRYWA X";
+                    document.getElementById("end").style.display = "block";
+                    console.log("WYGRYWA X")
+                }else if(tablica[2] == "x" && tablica[5] == "x" && tablica[8] == "x")
+                {
+                    console.log("WYGRYWA X")
+                }else if(tablica[0] == "x" && tablica[4] == "x" && tablica[8] == "x")
+                {
+                    document.getElementById("end").innerText="WYGRYWA X";
+                    document.getElementById("end").style.display = "block";
+                    console.log("WYGRYWA X")
+                }else if(tablica[2] == "x" && tablica[4] == "x" && tablica[6] == "x")
+                {
+                    document.getElementById("end").innerText="WYGRYWA X";
+                    document.getElementById("end").style.display = "block";
+                    console.log("WYGRYWA X")
+                }else if(tablica[0] == "o" && tablica[1] == "o" && tablica[2] == "o")
+                {
+                    document.getElementById("end").innerText="WYGRYWA O";
+                    document.getElementById("end").style.display = "block";
+                    console.log("WYGRYWA O")
+                }else if (tablica[3] == "o" && tablica[4] == "o" && tablica[5] == "o" )
+                {
+                    document.getElementById("end").innerText="WYGRYWA O";
+                    document.getElementById("end").style.display = "block";
+                    console.log("WYGRYWA O")
+                }else if(tablica[6] == "o" && tablica[7] == "o" && tablica[8] == "o" )
+                {
+                    document.getElementById("end").innerText="WYGRYWA O";
+                    document.getElementById("end").style.display = "block";
+                    console.log("WYGRYWA O")
+                }else if(tablica[0] == "o" && tablica[3] == "o" && tablica[6] == "o")
+                {
+                    document.getElementById("end").innerText="WYGRYWA O";
+                    document.getElementById("end").style.display = "block";
+                    console.log("WYGRYWA O")
+                }else if(tablica[1] == "o" && tablica[4] == "o" && tablica[7] == "o")
+                {
+                    document.getElementById("end").innerText="WYGRYWA O";
+                    document.getElementById("end").style.display = "block";
+                    console.log("WYGRYWA O")
+                }else if(tablica[2] == "o" && tablica[5] == "o" && tablica[8] == "o")
+                {
+                    document.getElementById("end").innerText="WYGRYWA O";
+                    document.getElementById("end").style.display = "block";
+                    console.log("WYGRYWA O")
+                }else if(tablica[0] == "o" && tablica[4] == "o" && tablica[8] == "o")
+                {
+                    document.getElementById("end").innerText="WYGRYWA O";
+                    document.getElementById("end").style.display = "block";
+                    console.log("WYGRYWA O")
+                }else if(tablica[2] == "o" && tablica[4] == "o" && tablica[6] == "o")
+                {
+                    document.getElementById("end").innerText="WYGRYWA O";
+                    document.getElementById("end").style.display = "block";
+                    console.log("WYGRYWA O")
+                   
+                }
+
+
+            }
+
+
+        
+
+
+    </script>
+
+</head>
+
+<body onload="gen()">
+  
+
+    
+        <div id=main>
+
+        </div>
+    
+    <div class="endgame" id="end">
+        <div class="text"></div>
+    </div>
+    <button onCLick="startGame()">Replay</button>
+  
+</body>
+
+<style>
+    button {
+    background-color: rgb(84, 192, 224); 
+    color: black; 
+    border: 2px solid #008CBA;
+    width: 150px;
+    height: 50px;
+  }
+  button:hover {
+    background-color: #008CBA;
+    color: white;
+  }
+body{
+    background-color: rgb(172, 223, 236);
+}
+td
+{
+    border: 10px solid rgb(18, 78, 189);
+    height: 100px;
+    width: 100px;
+    text-align: center;
+    vertical-align: middle;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 70px;
+    cursor: pointer;
+    background-color: rgb(74, 115, 228);
+    color: white;
+   
+}
+table
+{
+    border-collapse: collapse;
+    position: absolute;
+    left: 50%;
+    margin-left: -155px;
+    top: 50px;
+}
+
+.endgame 
+{
+    display: none;
+    width: 200px;
+    top: 120px;
+    background-color: rgba(26, 104, 192, 0.8);
+    position: absolute;
+    left: 50%;
+    margin-left: -100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    border-radius: 5px;
+    color:white;
+    font-size: 2em;
+}
+</style>
+
+
+
+
+
+</html>

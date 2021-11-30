@@ -1,0 +1,27 @@
+html
+head
+	link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700")
+	link(rel="stylesheet" href="css/main.css")
+body
+	table.tabelkaLogowania
+		form(method="post" action="login")
+			tr 
+				th
+					if !session.logged
+						p Podaj login i hasło by się zalogować
+						p
+							h5 Login: 
+								input(type="text", class="login" name="login" required)
+								
+						p
+							h5 Hasło: 
+								input(type="password", class="haslo" name="password" required)
+								
+							input(type="submit")
+						p
+							|#{error}
+					else
+						p Jesteś już zalogowany
+							a(class='button', href='logout') Wyloguj
+							a(class='button', href='/') Powrót
+					

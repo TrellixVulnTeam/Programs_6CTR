@@ -1,0 +1,66 @@
+
+{% load static %}
+
+{% include 'salon/base.html' %}
+
+  <body>
+
+    {% include 'salon/menu.html' %}
+    
+    <div id="page">
+      <div id="main_bg">
+    {% include 'salon/leftbar.html' %}
+    <div id="content">
+
+
+
+        <!--TREŚĆ-->
+        
+        
+        {% if user.is_authenticated %}
+        <div class="window" style="padding-top: 10px;">
+          Jeśli masz jakieś pytania lub problem z zakupionym u nas sprzętem, napisz nam o tym w formularzu
+               
+            <div class="window" style="padding-top: 10px;">
+              Treść wiadomości:
+              {% if messages %}
+              <ul>
+                  {% for komunikat in messages %}
+                  {{ komunikat }} {{ user.username }}
+                  {% endfor %}
+              </ul>
+              {% endif %}
+              
+              <form method="post">
+                {% csrf_token %} 
+                  <textarea name="opis" id="opis" cols="20" rows="10"></textarea>
+                  <input type="hidden" name="username" value="{{user.username}}"> 
+                  <button class="bt" type="submit">Wyślij</button>
+              </form>
+
+
+
+            </div>
+        </div>
+       
+        {% else %}
+        <div class="window">
+            Treść widoczna tylko dla zarejestrowanych użytkowników <br><br>
+            jeśli nie masz jeszcze konta:
+            <a href="{% url 'salon:signup'%}">Zarejestruj się</a> <br>
+            a jeśli masz: <a href="{% url 'salon:loguj'%}">Zaloguj się</a>
+        </div>
+        
+        {% endif %}
+
+
+
+
+    </div>
+
+</div>
+</div>
+</div>   
+
+</body>
+</html>

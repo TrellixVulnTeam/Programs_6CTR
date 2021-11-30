@@ -1,0 +1,447 @@
+/*
+Design by Metamorphosis Design
+http://www.metamorphozis.com
+Released for free under a Creative Commons Attribution 2.5 License
+*/
+
+* 
+{
+margin: 0px;
+padding: 0px;
+}
+#test
+{
+	color: green;
+}
+body {
+	background: #59594d;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #666666;
+}
+
+input, textarea {
+	background: #A4E4F5;
+	border: 1px solid #FFFFFF;
+	font: bold 13px Arial, Helvetica, sans-serif;
+	color: #0F5B96;
+}
+
+h1, h2, h3, p, ol, ul {
+	margin-top: 0;
+}
+
+h1, h2, h3 {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+h1, h2 {
+	text-transform: lowercase;
+	font-weight: normal;
+}
+
+h1 {
+	font-size: 2.4em;
+}
+
+h2 {
+	font-size: 1.8em;
+}
+hr {
+	display: none;
+}
+
+#main
+{
+width: 1000px;
+margin: 0 auto;
+background: #000000 url(images/header.jpg) no-repeat top;
+padding-bottom: 20px;
+}
+
+#main_bg{
+	background: url(images/main_bg.jpg) left repeat-y;
+}
+
+
+/* Header */
+
+#header {
+	width: 1000px;
+}
+
+#logo {
+width: 1000px;
+height: 280px;
+}
+
+#logo h1, #logo p {
+	margin: 0;
+	line-height: normal;
+}
+
+#logo h1 {
+	padding: 47px 0 0 20px;
+	font-size: 24px;
+	color: #ffffff;
+}
+#logo h2 {
+	padding: 10px 0 0 20px;
+	font-size: 10px;
+	text-transform: uppercase;
+	color: #ffffff;
+}
+
+#logo a {
+	text-decoration: none;
+	color: #ffffff;
+}
+
+#menu {
+height: 51px;
+background: url(images/menu.png) no-repeat top;
+width: 1000px;
+margin: 0 auto;
+}
+
+#menu ul {
+	margin: 0;
+	list-style: none;
+	padding-left: 150px;
+}
+
+#menu li {
+	display: inline;
+}
+
+#menu a {
+	float: left;
+	width: 140px;
+	height: 35px;
+	text-decoration: none;
+	text-align: center;
+	padding-top: 13px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #ffffff;
+
+}
+
+#menu a:hover {
+	background: url(images/menuhover.png) repeat-x;
+	height: 35px;
+	color: #77c0c9;
+}
+
+/* Page */
+
+#page {
+	width: 994px;
+	background:url(images/pagetop.png) top left no-repeat;
+	margin-left: 6px;
+	padding-top: 8px;
+}
+
+/* Content */
+
+#content {
+	float: left;
+	width: 527px;
+	margin-left: 7px;
+}
+
+#content .post ul, #content .post ol
+{
+margin-left: 30px;
+}
+
+#head2{
+	padding-left: 8px;
+}
+
+#headleft{
+	background: url(images/header2.jpg) no-repeat top left;
+	width: 354px;
+	height: 205px;
+}
+
+#headright{
+	width:164px;
+	float:right;
+}
+
+
+h4{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size: 18px;
+	color: #002e81;
+	font-weight:normal;
+	padding-left: 30px;
+	padding-top: 20px;
+}
+
+#web{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size: 18px;
+	color: #002e81;
+	padding-left: 18px;
+	padding-top: 8px;
+	font-style:italic;
+}
+
+#weltext{
+	padding-top: 15px;
+	color: #000000;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#weltext a{
+	color: #005055;
+	text-decoration:none;
+}
+
+#weltext a:hover{
+	color: #002e81;
+	text-decoration:underline;
+
+}
+
+.more{
+	text-align:right;	
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	padding-bottom: 5px;
+	padding-right: 10px;
+}
+
+.more a{
+	color: #002e81;
+	text-decoration: none;
+}
+
+.more a:hover{
+	color: #005055;
+	text-decoration:underline;
+}
+
+h3{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size: 18px;
+	color: #006cff;
+	font-weight:normal;	
+	background:url(images/title2.gif) no-repeat bottom center;
+	margin-left: 2px;
+	padding-left:30px;
+	margin-bottom: 10px;
+	padding-top: 10px;
+}
+
+.post {
+	color: #000000;
+	
+}
+
+.post p{
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.post a{
+	color: #002e81;
+	text-decoration:none;
+}
+
+.post a:hover{
+	text-decoration:underline;
+}
+
+.post H2
+{
+color: #b01000;
+text-transform: uppercase;
+font-size: 14px;
+font-weight: bold
+}
+
+#colblog{
+	padding-left: 8px;
+}
+
+#col1{
+	background:url(images/col1.jpg) no-repeat left top;
+	width: 168px;
+	height: 199px;
+	float: left;
+}
+
+#col2{
+	background:url(images/col3.jpg) no-repeat left top;
+	width: 168px;
+	height: 199px;
+	float:right;
+	padding-right:5px;
+}
+
+#col3{
+	background:url(images/col2.jpg) no-repeat left top;
+	width: 168px;
+	height: 199px;
+	float:right;
+	padding-right: 5px;
+}
+
+h5{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:14px;
+	color: #002e81;
+	font-weight:normal;
+	padding-left: 8px;
+	padding-top: 30px;
+}
+
+.coltitle{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #525151;
+	padding-left: 20px;
+	padding-top: 3px;
+}
+
+.coltext{
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 3px;
+}
+
+/* Sidebars */
+
+.sidebar {
+	float: left;
+	margin-top: 10px;
+	color: #000000;
+
+}
+
+.sidebar ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	line-height: normal;
+}
+
+
+.sidebar li {
+
+}
+
+.sidebar h2 {
+width: 203px;
+font-size: 14px;
+font-weight: bold;
+padding-left: 25px;
+text-transform: none;
+color: #004fff;
+background: url(images/title.gif) no-repeat bottom center;
+margin-left: 4px;
+font-family:Georgia, "Times New Roman", Times, serif;
+}
+
+/* Left Sidebar */
+
+#leftbar {
+	width: 230px;
+}
+
+#leftbarhr{
+	background:url(images/lefthr.gif) no-repeat;
+	height:4px;
+	width: 233px;
+	padding-bottom: 10px;
+}
+
+#leftbar ul{
+	padding-left: 20px;
+	padding-bottom: 10px;
+	padding-right: 30px;
+}
+
+#leftbar ul li{
+	padding-left: 12px;
+	margin-top: 8px;
+	background:url(images/ls.gif) no-repeat left top;
+} 
+
+#leftbar a {
+	text-decoration: none;
+	color: #000000;
+	font-size: 12px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+#leftbar a:hover {
+	color: #002081;
+	text-decoration: underline;
+}
+
+
+/* Right Sidebar */
+
+#rightbar {
+	width: 200px;
+	color: #ffffff;
+}
+
+#rightbar ul{
+	padding-left: 15px;
+	padding-top: 20px;
+}
+
+#rightbar ul li{
+	margin-bottom: 5px;
+	background:url(images/ls2.png) no-repeat left top; 
+	padding-left: 25px;
+}
+
+.read{
+	text-align:right;	
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	padding-bottom: 5px;
+}
+
+.read a{
+	color: #6686c0;
+	text-decoration: none;
+}
+
+.read a:hover{
+	color: #6686c0;
+	text-decoration:underline;
+}
+
+#conbot{
+	background:url(images/conbot.jpg) no-repeat top;
+	width: 766px;
+	height: 12px;
+	clear: both;
+}
+/* Footer */
+
+#footer {
+	clear: both;
+	padding-top: 15px;
+	height: 47px;
+	background: url(images/footer.jpg) no-repeat center;
+	width: 1000px;
+}
+
+#footer p {
+	text-align: center;
+	font-size: smaller;
+	color: #CCCCCC;
+}
+
+#footer a {
+	color: #ffffff;
+}

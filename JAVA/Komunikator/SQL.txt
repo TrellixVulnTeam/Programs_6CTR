@@ -1,0 +1,1 @@
+INSERT INTO ACCOUNT (userid, username) VALUES (4, 'patryk')

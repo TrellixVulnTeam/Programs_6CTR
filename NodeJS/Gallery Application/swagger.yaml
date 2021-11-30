@@ -1,0 +1,99 @@
+swagger: '2.0'
+info:
+  description: Opis
+  version: 1.0.0
+  title: Aplikacja
+paths:
+  /PC:
+    put:
+      tag: nic
+definitions:
+  User:
+    required: '-Id -Login -Haslo -Imie -Nazwisko'
+    properties:
+      Id:
+        type: string
+      Imie:
+        type: string
+      Nazwisko:
+        type: string
+      Login:
+        type: string
+      Haslo:
+        type: string
+        minLength: 8
+        format: password
+      Email:
+        type: string
+  Administrator:
+    required: '-Prawa'
+    properties:
+      Prawa:
+        type: string
+  Tag:
+    required: '-Id'
+    properties:
+      Id:
+        type: string
+      Tekst:
+        type: string
+  Obraz:
+    required: '-Id -Tytul -Data -NazwaPliku -Sciezka -Rozmiar'
+    properties:
+      Id:
+        type: string
+      Tytul:
+        type: string
+      Opis:
+        type: string
+      Data:
+        type: string
+        format: date-time
+      NazwaPliku:
+        type: string
+      Sciezka:
+        type: string
+      Rozmiar:
+        type: number
+  Galeria:
+    required: '-Id -Tytul -Data'
+    properties:
+      Id:
+        type: string
+      Tytul:
+        type: string
+      Opis:
+        type: string
+      Data:
+        type: string
+        format: date-time
+      Widocznosc:
+        type: boolean
+  Komentarz:
+    required: '-Id -Tresc -Data'
+    properties:
+      Id:
+        type: string
+      Tresc:
+        type: string
+      Data:
+        type: string
+        format: date-time
+  Miniatura:
+    required: '-Typ'
+    properties:
+      Typ:
+        type: string
+  SesjaResponse:
+    required:
+      - Id
+      - Token
+      - Waznosc
+    properties:
+      Id:
+        type: string
+      Token:
+        type: string
+      Waznosc:
+        type: string
+        format: date-time

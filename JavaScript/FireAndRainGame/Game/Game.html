@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<style>
+canvas {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+            width: 80%;
+            height: 550px;
+            
+            border: 1px solid black;
+}
+</style>
+</head>
+<body style="background: rgb(2,0,36); background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);" onload="startGame()">
+
+    <div id="start" style="position:static; margin:auto; display: none;"> <span style=" color: white; font-size: 25px;">Witaj w grze Spark Escape ! <br> Pomóż uciekającemu płomykowi zebrać jak najwięcej magicznego żaru, ale uważaj na spadające kropelki wody (używając klawiatury lub myszy). <br> Powodzenia! </span> <button onclick="starting()">START</button> </div>
+
+
+
+
+
+<script>
+
+ var hero;
+ var o1, o2, o3, o4, o5, o6, o7, o8, o9, o10, o11, o12, o13, o14;
+ var oponent = [o1, o2, o3, o4, o5, o6, o7, o8, o9, o10, o11, o12, o13, o14];
+ var gold;
+ var score = 0;
+ var life = 3;
+ var background;
+ var animationFlag = 1;
+ var gameActive=0;
+ var mysound;
+ var mybackgroundmusic;
+ var pointsound;
+ var gameoversound;
+ var restartsound;
+
+
+
+function startGame() {
+ 
+    
+
+
+    window.addEventListener("keydown", keyListener, false)
+    myGameArea.start();
+    
+    hero = new component(30,30, "static/img/fire.png", 290, 350, "image"); // Tworzenie nowego obiektu i nadanie mu parametrów w funkcji component
+    mySound = new sound("static/sound/para.mp3");
+    mybackgroundmusic = new sound("static/sound/backgroundsong1.mp3")
+    pointsound = new sound("static/sound/point.mp3")
+    gameoversound = new sound("static/sound/gameover.mp3")
+    restartsound = new sound("static/sound/restart.mp3")
+  
+    
+     for(let i=0; i<oponent.length; i++)
+     {
+         oponent[i] = new component(10,10,"static/img/water.png",randomInt(10,630),randomInt(5,20),"image");    
+     }
+     myBackground = new component(640, 480, "static/img/background3.jpg", 0, 0, "background");
+    gold = new component(25,25, "static/img/stone.jpg",randomInt(10,630), randomInt(10,470), "image");
+
+}
+function randomInt(min, max) {
+	return min + Math.floor((max - min) * Math.random());
+}
+// plansza do gry
+var myGameArea = {   
+    canvas : document.createElement("canvas"), 
+    start : function() {
+      
+        this.canvas.width = 640;
+        this.canvas.height = 480;
+        this.canvas.style.cursor = "none";
+        this.context = this.canvas.getContext("2d");
+        
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.interval = setInterval(updateGameArea, 20);
+        
+        window.addEventListener('mousemove', function (e) {
+        
+        
+        hero.x = e.pageX;
+        hero.y = e.pageY;
+    })
+    window.addEventListener('touchmove', function (e) {
+      hero.x = e.touches[0].screenX;
+      hero.y = e.touches[0].screenY;
+    })
+    }, 
+    clear : function() {
+        this.context.clearRect(0,0,this.canvas.width, this.canvas.height);
+    },
+    stop : function() {
+    clearInterval(this.interval);
+  }
+}
+
+function component(width, height, color, x, y,type) //Konstruktor dla nowych obiektów 
+{
+    this.type=type;
+    if (type == "image" || type == "background") {
+    this.image = new Image();
+    this.image.src = color;
+  }
+    this.width = width;
+    this.height = height;
+    this.speedX = 0;
+    this.speedY = 0;
+    this.x = x;
+    this.y = y;
+    this.update = function()
+    {
+    ctx=myGameArea.context;
+    
+    if (type == "image" || type == "background") {
+      ctx.drawImage(this.image,
+        this.x,
+        this.y,
+        this.width, this.height);
+        if (type == "background") {
+        ctx.drawImage(this.image, this.x + this.width, this.y, this.width, this.height);
+      }
+    } else {
+    ctx.fillStyle = color;
+    ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+    }
+    this.newPos = function() {
+        this.x += this.speedX;
+        this.y += this.speedY; 
+        if (this.type == "background") {
+      if (this.x == -(this.width)) {
+        this.x = 0;
+      }
+    }       
+    }  
+
+
+    this.hitBottom = function() {
+        var rockbottom = myGameArea.canvas.height - this.height;
+        if (this.y > rockbottom) {
+            this.y = rockbottom;
+        }
+    }  
+
+    
+
+    this.hitRight = function() {
+        var rockright = myGameArea.canvas.width - this.width;
+        if (this.x > rockright) {
+            this.x = rockright;
+        }
+    }  
+
+  
+}
+
+
+
+function catchGold()
+{
+    if(((hero.x+25) > gold.x) && (gold.x > (hero.x-25)) && ((hero.y+25) > gold.y) && (gold.y > (hero.y-25)))
+    {
+
+        gold.x = randomInt(5,630);
+        gold.y = randomInt(5,470);
+        score = score + 1;
+        pointsound.play();
+        document.getElementById("score").innerText = score;
+        document.getElementById("scoreBox").innerText = score;
+
+    }
+}
+
+function colisionCheck()
+{
+
+
+    for(let i=0 ; i<oponent.length; i++)
+    {
+
+
+        if(((hero.x+hero.width) > oponent[i].x) && (oponent[i].x > (hero.x)) && ((hero.y+hero.height) > oponent[i].y) && (oponent[i].y > (hero.y)))
+        {
+
+
+            if (life>0) 
+            {
+                hero.image.src = "static/img/smoke.png";
+                life = life - 1;
+                
+                document.getElementById("life").innerText = life
+                oponent[i].x = randomInt(5,630);
+                oponent[i].y = randomInt(5, 20);
+                mySound.play();
+                
+                
+            }else if(life < 1)
+            {
+                mySound.play();
+                gameoversound.play();
+                myGameArea.stop();
+                hero.image.src = "static/img/smoke.png";
+                document.getElementById("res").style = "block"
+            } 
+
+            
+
+        }
+    }
+    
+}
+
+function changeAnimation()
+{
+    if(animationFlag == 1)
+    {
+        animationFlag = 0;
+        hero.image.src = "static/img/fire.png";
+    }else if(animationFlag == 0)
+    {
+        hero.image.src = "static/img/fire1.png";
+        animationFlag = 1
+    }
+}
+
+
+function updateGameArea()
+{
+    if(gameActive == 1)
+    {
+    myGameArea.clear();
+    myBackground.update();
+    myBackground.speedX = -0.2;
+    myBackground.newPos();
+    
+    
+    hero.update();
+
+     setInterval(hero.hitBottom(), 5);
+     setInterval(hero.hitRight(), 5);
+
+    
+ 
+    
+    
+    gold.update();
+    
+    for(let i=0; i<oponent.length; i++)
+      {
+
+          oponent[i].y += randomInt(1,15);  
+         
+      }
+     for(let i=0; i<oponent.length; i++)
+      {
+          oponent[i].update();  
+          if(oponent[i].y >= 470 )
+          {
+            oponent[i].x = randomInt(5,630);
+            oponent[i].y = randomInt(5, 20);
+          }
+         
+      }
+
+      animationFlag = animationFlag + 1;
+      
+      if(animationFlag == 10)
+        {
+        hero.image.src = "static/img/fire1.png";
+        }
+      if(animationFlag == 20)
+      {
+        hero.image.src = "static/img/fire.png";
+        animationFlag = 0;
+      }
+      catchGold();
+      colisionCheck();
+    }else if(gameActive == 0)
+    {
+
+    
+        document.getElementById('start').style.display = "block";
+    
+    }
+}
+function restart()
+{
+    startGame()
+    document.getElementById("res").style.display = "none"
+    restartsound.play()
+    score = 0;
+    life = 3;
+    document.getElementById("score").innerText = 0
+    document.getElementById("scoreBox").innerText = 0;
+    document.getElementById("life").innerText = life;
+    
+}
+
+function starting ()
+{
+    
+
+    gameActive=1;
+    document.getElementById("start").style.display = "none"
+    mybackgroundmusic.play();
+}
+
+
+
+function sound(src) {
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.setAttribute("preload", "auto");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+  document.body.appendChild(this.sound);
+  this.play = function(){
+    this.sound.play();
+  }
+  this.stop = function(){
+    this.sound.pause();
+  }
+}
+
+function keyListener(e) {
+
+    switch (e.keyCode) {
+                case 37: // naciśnięto strzałkę w lewo
+                    hero.x -= 5
+
+                    
+                   
+                    break
+                case 38: // naciśnięto strzałkę w górę
+                    hero.y -= 5
+                   
+                    
+                    break
+
+                case 39: // naciśnięto strzałkę w prawo
+                    hero.x += 5
+              
+                    
+                    break
+                case 40: // naciśnięto strzałkę w dół
+                    hero.y +=5
+                 
+                   
+                    break
+            }
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+</script>
+
+<div style="float: left;">  <img src="static/img/stone.jpg">   <span style="font-size: 30px; color: white;" id="score">0</span>  </div>
+<div style="float: left;">  <img src="static/img/heart.png"> <span style="font-size: 30px; color: white;"  id="life">3</span> </div>
+<div id="res" style="position:static; margin:auto; display: none;"> <span style=" color: white; font-size: 30px;">Twój wynik: </span> <span id="scoreBox">0</span> <button onclick="restart()">restart</button> </div>
+
+</body>
+<style>
+    #scoreBox
+    {
+        color: white; font-size: 30px;
+    }
+    button {
+      background-color: #2743be; /* Green */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+      
+    }
+    
+    button:hover {
+      background-color: #547ae4;
+    }
+    </style>
+</html>
+

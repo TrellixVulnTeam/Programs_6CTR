@@ -1,0 +1,71 @@
+{% load static %}
+
+
+   
+<div id="main">
+
+    <!-- start header -->
+    <div id="header">
+     <div id="logo">
+        <div class="sign">
+            <table>
+                <tr>
+                    <th>
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'salon:wyloguj'%}">Wyloguj się</a>
+                        {% else %}
+                        
+                        <a href="{% url 'salon:loguj'%}">Zaloguj się</a>
+                        <a href="{% url 'salon:signup'%}">Zarejestruj się</a>
+                        {% endif %}  
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        {% if messages %}
+                <ul>
+                    {% for komunikat in messages %}
+                    <li>{{ komunikat|capfirst }} {{ user.username }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                    </th>
+                </tr>
+            </table>
+
+        </div>
+        AutoClick
+        <h2><a href="#" id="metamorph">Internetowy salon samochodowy</a></h2>
+            
+                
+    
+    </div>
+          
+      
+        
+        <div id="menu">
+            
+          <ul>
+            {% if user.is_superuser %}
+            <li><a href="{% url 'salon:index'%}">Strona główna</a></li>
+            <li><a href="{% url 'salon:lista'%}">Lista zainteresowanych</a></li>
+            <li><a href="{% url 'salon:inbox'%}">Przysłane wiadomości</a></li>  
+            <li><a href="{% url 'salon:borrow'%}">Jazdy próbne</a></li>  
+            {% elif not user.is_superuser %}
+           <li><a href="{% url 'salon:index'%}">Strona główna</a></li>
+           <li><a href="{% url 'salon:katalog'%}">Katalog</a></li>
+           <li><a href="{% url 'salon:contact'%}">Jazda próbna</a></li>   
+           <li><a href="{% url 'salon:about'%}">O nas</a></li>
+           <li><a href="{% url 'salon:support'%}">Support</a></li>
+                     
+           {% endif %}
+           
+           
+          </ul>
+          
+      </div>
+    <!--Header end -->
+    </div>
+
+
+

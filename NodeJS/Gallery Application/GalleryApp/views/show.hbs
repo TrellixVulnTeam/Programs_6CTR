@@ -1,0 +1,54 @@
+<center>
+<br />
+Nazwa:
+{{item.nazwa}}
+<br />
+Rozmiar:
+{{ item.rozmiar}}
+<br>
+<img src="../{{item.sciezka}}/{{item.nazwa}}">
+
+
+
+    {{# each commentsList}}
+
+    
+    <figure class="text-center">
+        <blockquote class="blockquote">
+            <p>{{this.tresc}}</p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+            komentarz od <cite title="Source Title">{{this.user}}</cite>
+        </figcaption>
+
+
+    </figure>
+
+    {{/each}}
+    <div class="col-sm-2">
+
+        <form action="../comments/add/{{item.id}}" method="post">
+        
+            <div class="form-group">
+
+                <label for="tresc">Treść:</label>
+                
+                <textarea style="width: 300px; height: 100px;"  type="text" id="tresc" name="tresc"></textarea>
+
+               
+                <input type="hidden" id="id_zdjecia" name="id_zdjecia" value="{{item.id}}">
+
+            </div>
+            <input type="submit" value="Komentuj" class="btn btn-primary">
+        
+        
+        
+        </form>
+        {{item.likes}}
+        <form action="/pictures/like" method="post" style="display: inline;">
+        <input type="hidden" id='{{item.likes}}' value="{{item.likes}}">
+        <button class = "btn btn-outline-danger btn-sm" type="submit" name="id" id='{{item.id}}' value='{{item.id}}'> Like </button>
+        </form>
+
+    </div>
+</center>

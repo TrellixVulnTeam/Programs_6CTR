@@ -1,0 +1,43 @@
+{{!-- 
+
+{{ # each items }}
+<div>
+    <p>{{this.nazwa}}</p>
+    {{!-- <img src= "{{this.sciezka}}/{{this.nazwa}}.jpg" alt="..." width="200">
+    nazwa: {{this.nazwa}} rozmiar: {{this.rozmiar}}kb
+    <br /> --}}
+{{!-- </div>
+{{/each}} --}} 
+<div class="container" style="background-color: whitesmoke;"> 
+
+<p>{{title}}</p>
+
+<div class="row">
+
+{{# each items}}
+<div class="col-sm">
+
+<img src="{{this.sciezka}}/{{this.nazwa}}" alt="" height="200" width="200">
+<figcaption class="figure-caption text-left">
+    nazwa: {{this.nazwa}} rozmiar: {{this.rozmiar}}kb 
+</figcaption>
+<a href="pictures/{{this.id}}"><button class="btn btn-outline-success btn-sm">pokaz</button></a>
+<a href="pictures/update/{{this.id}}"<button class="btn btn-outline-primary btn-sm">update</button></a>
+<form action="pictures/delete" method="post" style="display: inline;">
+    <button class = "btn btn-outline-danger btn-sm" type="submit" name="id" id='{{this.id}}' value='{{this.id}}'> Delete </button>
+</form>
+</div>
+{{/each}}
+</div>
+
+<br>
+<br>
+
+<div style="text-align: center;">
+    <form action="pictures/create" method="get">
+        <button class="btn btn-primary" type="submit" class="btn-link">Dodaj zdjęcie</button>
+    </form>
+
+</div>
+
+</div>

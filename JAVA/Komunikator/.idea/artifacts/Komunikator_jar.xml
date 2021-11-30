@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Komunikator:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Komunikator_jar</output-path>
+    <root id="archive" name="Komunikator.jar">
+      <element id="module-output" name="Komunikator" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/postgresql-42.2.9.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

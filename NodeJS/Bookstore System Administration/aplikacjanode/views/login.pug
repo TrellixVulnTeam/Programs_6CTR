@@ -1,0 +1,28 @@
+extends menu.pug
+block appContent
+    body(onLoad="window.alert(`WITAJ! Zostałeś pomyślnie zalogowany`)")
+        p Witaj  
+            |#{login}
+            
+            <br/><br/><br/><br/>
+        
+        div.books
+            table.bookstable
+                tr
+                    th.thsize(rowspan="4")
+                        p 
+                        img.images(src=("picture/ania.jpg"))
+                    th.thsize 
+                        p Ania z Zielonego Wzgórza
+                tr
+                    th.thsize 
+                        p Lucy Maud Montgomery 
+                tr  
+                    th.thsize
+                        p Powieść
+                tr
+                    th.thsize  
+                        p Ania z Zielonego Wzgórza – seria powieści młodzieżowych autorstwa kanadyjskiej pisarki Lucy Maud Montgomery opowiadająca o losach Ani Shirley, osieroconej dziewczynki wychowanej w Avonlea przez rodzeństwo Marylę i Mateusza Cuthbertów
+             
+            
+            

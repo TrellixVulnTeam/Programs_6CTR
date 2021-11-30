@@ -1,0 +1,20 @@
+html
+head
+	link(rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700")
+	link(rel="stylesheet" type="text/css" href="css/main.css")
+body
+	table.tabelkaRejestracja
+	form(method="post" action="register")
+		tr
+			th
+				p Witaj!<br/> Zarejestruj się za darmo na naszej stronie i zostań użytkownikiem. <br/> U nas znajdziesz wiele ciekawych tytułów książek, jesteśmy pewni że będzie tu coś dla Ciebie.
+					h5 Login: 
+						input(type="text", class="log" name="log" minlength="4" required)
+                        
+				p
+					h5 Hasło: 
+						input(type="password", class="has" name="pass" minlength="4" required)
+				
+					input(type="submit")
+                
+					

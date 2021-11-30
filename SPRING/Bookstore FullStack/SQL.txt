@@ -1,0 +1,101 @@
+DROP SCHEMA IF EXISTS `jpa2020`;
+CREATE SCHEMA `jpa2020`;
+use `jpa2020`;
+CREATE TABLE `kategorie` (
+ `id` mediumint(9) NOT NULL auto_increment,
+ `nazwa` varchar(40) NOT NULL,
+ PRIMARY KEY (`id`)
+) ;
+INSERT INTO `kategorie` VALUES (1, 'brak');
+INSERT INTO `kategorie` VALUES (2, 'Literatura polska');
+INSERT INTO `kategorie` VALUES (3, 'Literatura zagraniczna');
+CREATE TABLE `ksiazki` (
+ `id` int(11) NOT NULL auto_increment,
+ `nazwa` varchar(100) NOT NULL,
+ `wydawnictwo` varchar(50) NOT NULL,
+ `cena` float NOT NULL default '0',
+  `ilosc` integer not null default 1, 
+ `kategoria_id` mediumint(9) NULL,
+ PRIMARY KEY (`id`),
+ FOREIGN KEY (`kategoria_id`) REFERENCES `kategorie`(`id`)
+) ;
+INSERT INTO `ksiazki` VALUES (1, 'Hamlet', 'AAA', 6.5, 3, 2);
+INSERT INTO `ksiazki` VALUES (2, 'Makbet', 'AAA', 6.8, 2, 1);
+INSERT INTO `ksiazki` VALUES (3, 'Potop', 'BBB', 18.4, 2, 1);
+INSERT INTO `ksiazki` VALUES (4, 'Quo vadis', 'BBB', 17.99, 2, 3);
+INSERT INTO `ksiazki` VALUES (5, 'Pan Tadeusz', 'CCC', 13.78, 2, 3);
+INSERT INTO `ksiazki` VALUES (6, 'Nad Niemnem', 'CCC', 15.45, 2, 1);
+CREATE TABLE `autorzy` (
+`id` SMALLINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`imie` VARCHAR(30) NOT NULL,
+`nazwisko` VARCHAR(40) NOT NULL
+);
+INSERT INTO `autorzy` (`imie` , `nazwisko`) VALUES
+('William', 'Shakespeare'),
+('Henryk', 'Sienkiewicz'),
+('Adam', 'Mickiewicz'),
+('Eliza', 'Orzeszkowa'),
+('Jan', 'Kowalski');
+CREATE TABLE `autorzy_to_ksiazki` (
+ `ksiazka_id` int(11) NOT NULL,
+ `autor_id` SMALLINT NOT NULL,
+ PRIMARY KEY (`autor_id`,`ksiazka_id`),
+ # KEY `FK_AUTOR_idx` (`autor_id`),
+ CONSTRAINT `FK_AUTOR` FOREIGN KEY (`autor_id`)
+ REFERENCES `autorzy` (`id`),
+ CONSTRAINT `FK_KSIAZKA` FOREIGN KEY (`ksiazka_id`)
+ REFERENCES `ksiazki` (`id`)
+);
+INSERT INTO `autorzy_to_ksiazki` VALUES (1, 1);
+INSERT INTO `autorzy_to_ksiazki` VALUES (1, 5);
+INSERT INTO `autorzy_to_ksiazki` VALUES (2, 1);
+INSERT INTO `autorzy_to_ksiazki` VALUES (2, 5);
+INSERT INTO `autorzy_to_ksiazki` VALUES (3, 2);
+INSERT INTO `autorzy_to_ksiazki` VALUES (4, 2);
+INSERT INTO `autorzy_to_ksiazki` VALUES (5, 3);
+INSERT INTO `autorzy_to_ksiazki` VALUES (6, 4);
+
+DROP TABLE IF EXISTS `authorities`;
+CREATE TABLE authorities (
+ username varchar(50) NOT NULL,
+ authority varchar(50) NOT NULL,
+
+ UNIQUE KEY `authorieties_idx_1` (`username`, `authority`),
+ CONSTRAINT `authorities_ibfk_1`
+foreign key (`username`)
+ REFERENCES `users` (`username`)
+
+);
+
+drop table if exists `users`;
+CREATE TABLE users (
+ username VARCHAR(25) NOT NULL,
+ password VARCHAR(60) NOT NULL,
+ enabled boolean NOT NULL DEFAULT TRUE,
+ PRIMARY KEY (username)
+);
+
+
+
+CREATE table `koszyk` 
+(
+	`id` int(11) NOT NULL auto_increment,
+    `ksiazka_id` int(11) NOT NULL,
+	`username` VARCHAR(25) NOT null,
+    `nazwa` VARCHAR(25) NOT null,
+    `kategoria` varchar(25) NOT null,
+    `cena` float(11) NOT NULL,
+    `data` varchar(50) not null,
+    PRIMARY KEY (`id`)
+);
+CREATE table `zamowione` 
+(
+	`id` int(11) NOT NULL auto_increment,
+	`username` VARCHAR(25) NOT null,
+    `nazwa` VARCHAR(25) NOT null,
+    `kategoria` varchar(25) NOT null,
+    `cena` float(11) NOT NULL,
+    `data` varchar(50) not null,
+    `status` varchar(50) not null,
+    PRIMARY KEY (`id`)
+);

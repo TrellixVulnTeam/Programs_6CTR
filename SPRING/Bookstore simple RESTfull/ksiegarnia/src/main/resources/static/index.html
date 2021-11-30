@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>BookStoreAdministration</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h2>Welcome to the bookstore administration website</h2>
+<br>
+<p>Show all available books</p>
+<a href="/books/list">Show</a>
+<br>
+<p>Show only one book with ID </p>
+<form action="/books/find/" method="POST" id="findForm">
+    <div>
+        <label for="IDField">ID = </label>
+        <input name="id" id="IDField">
+        <button>Show</button>
+    </div>
+</form>
+<br>
+<p>Add book </p>
+<form action="/books/add/" method="POST" id="addForm">
+    <div>
+        <label for="titleField">Title </label>
+        <input name="title" id="titleField">
+        <label for="authorField">Author </label>
+        <input name="author" id="authorField">
+
+        <button>Add</button>
+    </div>
+</form>
+<br>
+<p>Delete book</p>
+<form action="/books/delete/" method="POST" id="deleteForm">
+    <div>
+        <label for="DeleteField">ID = </label>
+        <input name="id" id="DeleteField">
+
+        <button>Delete</button>
+
+    </div>
+
+</form>
+
+
+<p>Update book </p>
+
+<form action="/books/edit" method="POST" id="updateForm">
+    <div>
+        <label for="id">ID książki </label>
+        <input name="id" id="id" required>
+        <label for="titleUpdateField">tytuł </label>
+        <input name="title" id="titleUpdateField">
+        <label for="authorUpdateField">autor </label>
+        <input name="author" id="authorUpdateField">
+        <button>update</button>
+    </div>
+</form>
+</body>
+</html>
