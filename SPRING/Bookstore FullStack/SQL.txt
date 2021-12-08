@@ -9,6 +9,7 @@ CREATE TABLE `kategorie` (
 INSERT INTO `kategorie` VALUES (1, 'brak');
 INSERT INTO `kategorie` VALUES (2, 'Literatura polska');
 INSERT INTO `kategorie` VALUES (3, 'Literatura zagraniczna');
+
 CREATE TABLE `ksiazki` (
  `id` int(11) NOT NULL auto_increment,
  `nazwa` varchar(100) NOT NULL,
