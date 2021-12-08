@@ -1,0 +1,57 @@
+
+
+<p>Szukaj gry</p>
+
+<form action="/games/findGame" method="get">
+<label for="findTitleId">Podaj nazwę gry</label>
+<input name="title" id="findTitleId">
+
+    <label for="findLowPriceId">Cena od</label>-->
+    <input name="lowPrice" value="0" required id="findLowPriceId">
+    <label for="findMaxPriceId">do</label>
+    <input name="maxPrice" value="0" required id="findMaxPriceId">
+    <button>Szukaj</button>
+
+</form>
+
+<!--<p>Cena gry</p>-->
+
+<!--<form action="/games/findGamePrice" method="get">-->
+<!--    <label for="findLowPriceId">Cena od</label>-->
+<!--    <input name="lowPrice" value="0" required id="findLowPriceId">-->
+<!--    <label for="findMaxPriceId">do</label>-->
+<!--    <input name="maxPrice" value="0" required id="findMaxPriceId">-->
+<!--    <button>Szukaj</button>-->
+
+<!--</form>-->
+
+
+
+
+
+<table>
+    <tr>
+        <th>
+            Tytuł
+        </th>
+        <th>
+            Cena
+        </th>
+        <th>
+            ilość
+        </th>
+    </tr>
+    <tr th:each="game : ${games}">
+        <td th:text="${game.title}"></td>
+        <td th:text="${game.price}"></td>
+        <td th:text="${game.quantity}"></td>
+        <td><form action="/games/deleteGame" method="POST">
+
+            <input type="hidden" name="deleteId" th:value="${game.id}">
+            <button>Usuń</button>
+        </form>
+        </td>
+    </tr>
+
+
+</table>

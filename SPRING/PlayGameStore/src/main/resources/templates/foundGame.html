@@ -1,0 +1,38 @@
+
+
+<!--    Odmiana rzeczownika przez liczbę-->
+znaleziono <span th:text="${foundGameSize}"/>
+<span th:if="${foundGameSize == 1}">wynik</span>
+<span th:if="${foundGameSize > 1 && foundGameSize<5}">wyniki</span>
+<span th:if="${foundGameSize > 4}">wyników</span>
+
+
+<table>
+
+    <tr>
+        <th>
+            Tytuł
+        </th>
+        <th>
+            Cena
+        </th>
+        <th>
+            ilość
+        </th>
+    </tr>
+    <tr th:each="game : ${foundGame}">
+        <td th:text="${game.title}"></td>
+        <td th:text="${game.price}"></td>
+        <td th:text="${game.quantity}"></td>
+        <td><form action="/games/deleteGame" method="POST">
+
+            <input type="hidden" name="deleteId" th:value="${game.id}">
+            <button>Usuń</button>
+        </form>
+        </td>
+    </tr>
+
+</table>
+
+
+

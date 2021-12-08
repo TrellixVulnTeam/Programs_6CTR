@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Hello</title>
+</head>
+<body>
+Formularz dodawania gry
+<hr>
+
+<form action="/games/saveGame" method="POST">
+
+    <label for="titleId">Tytuł</label>
+    <input name="title" id="titleId">
+    <label for="priceId">Cena</label>
+    <input name="price" id="priceId">
+    <label for="quantityId">Ilość</label>
+    <input name="quantity" id="quantityId">
+
+    <button>Wyślij</button>
+</form>
+
+</body>
+</html>
