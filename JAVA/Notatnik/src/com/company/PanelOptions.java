@@ -16,8 +16,6 @@ public class PanelOptions extends JPanel {
     Dimension buttonSize2 = new Dimension(25,25);
 
 
-
-
     JButton boild;
     JButton cursive;
     JButton clear;
@@ -94,10 +92,6 @@ public class PanelOptions extends JPanel {
         putEmoji.setPreferredSize(buttonSize1);
 
 
-
-
-
-
         for (int i=1; i<40; i++)
         {
             fontSizeValue[i] = i+"";
@@ -109,8 +103,6 @@ public class PanelOptions extends JPanel {
         fontSize.setBackground(Color.white);
         fontLabel.setForeground(Color.WHITE);
         fontSize.setSelectedItem("25");
-
-
 
 
         add(putEmoji);

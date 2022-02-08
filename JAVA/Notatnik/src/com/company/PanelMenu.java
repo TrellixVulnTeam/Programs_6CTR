@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
-public class PanelMenu extends JPanel implements ActionListener {
+public class PanelMenu extends JPanel {
 
 
     JMenuBar menuBar;
@@ -16,15 +16,13 @@ public class PanelMenu extends JPanel implements ActionListener {
     JMenuItem zapisz;
     JMenuItem oNas;
     JMenuItem instrukcja;
-    PanelWriter panelWriter;
+
 
 
     public PanelMenu()
     {
         menuBar = new JMenuBar();
-        menuBar.setBackground(Color.DARK_GRAY);
-
-
+        menuBar.setBackground(new Color(47,79,79));
 
 
         menu = new JMenu("Plik");
@@ -35,15 +33,14 @@ public class PanelMenu extends JPanel implements ActionListener {
         zapisz = new JMenuItem("zapisz",KeyEvent.VK_T);
         zapisz.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
         zapisz.getAccessibleContext().setAccessibleDescription("Tu możesz zapisać utworzony plik");
-        zapisz.addActionListener(this);
+
         menu.add(zapisz);
 
         wczytaj = new JMenuItem("wczytaj", KeyEvent.VK_B);
         wczytaj.getAccessibleContext().setAccessibleDescription("Tu możesz wczytać plik z komputera");
         wczytaj.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
-        wczytaj.addActionListener(this);
-        menu.add(wczytaj);
 
+        menu.add(wczytaj);
 
         help = new JMenu("Pomoc");
         help.setMnemonic(KeyEvent.VK_H);
@@ -56,21 +53,14 @@ public class PanelMenu extends JPanel implements ActionListener {
         oNas = new JMenuItem("O nas");
         help.add(oNas);
 
-
         menuBar.add(menu);
         menuBar.add(help);
         setLayout(null);
         setVisible(true);
 
 
-
-
     }
 
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
 }
 

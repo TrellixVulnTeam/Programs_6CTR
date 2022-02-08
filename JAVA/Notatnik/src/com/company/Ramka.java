@@ -94,7 +94,6 @@ public class Ramka extends JFrame implements ActionListener, ItemListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 
-
     }
 
 
